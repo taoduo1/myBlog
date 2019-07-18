@@ -1,0 +1,14 @@
+package com.td.myblog.myblog.service.user.impl;
+
+import com.td.myblog.myblog.service.user.UserService;
+
+/*
+ *
+ * @Company 太美医疗科技
+ * @Description: 
+ * @Author duo.tao
+ * @Date 18/07/2019 17:26 
+ */
+public class UserServiceImpl implements UserService{
+
+}
