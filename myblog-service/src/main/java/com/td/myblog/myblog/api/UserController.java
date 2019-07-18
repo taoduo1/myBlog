@@ -10,8 +10,11 @@ package com.td.myblog.myblog.api;
 
 import com.td.myblog.myblog.entity.User;
 import com.td.myblog.myblog.service.user.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,8 +25,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-    @RequestMapping("/query")
+    @ApiOperation(value="获取用户", notes="获取用户")
+    @RequestMapping(value = "/query",method = RequestMethod.GET)
     public User testQuery() {
         return userService.selectUserByName("1");
     }
