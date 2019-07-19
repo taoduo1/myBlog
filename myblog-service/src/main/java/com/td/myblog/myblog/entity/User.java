@@ -2,23 +2,26 @@ package com.td.myblog.myblog.entity;
 
 /*
  *
- * @Company 太美医疗科技
+ * @Company
  * @Description: 
  * @Author duo.tao
  * @Date 18/07/2019 17:24 
  */
 public class User {
 
-    private int id;
-    private String name;
-    private int age;
-    private double money;
+    private Integer id;
 
-    public int getId() {
+    private String name;
+
+    private Integer age;
+
+    private Double money;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -30,19 +33,19 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public double getMoney() {
+    public Double getMoney() {
         return money;
     }
 
-    public void setMoney(double money) {
+    public void setMoney(Double money) {
         this.money = money;
     }
 }

@@ -1,7 +1,11 @@
 package com.td.myblog.myblog;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+import springfox.documentation.annotations.ApiIgnore;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -14,6 +18,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class Swagger {
+
+    @GetMapping(value = "/")
+    @ApiIgnore()
+    @ApiOperation(value = "重定向到swagger首页")
+    public ModelAndView index() {
+        return new ModelAndView("redirect:/swagger-ui.html");
+    }
+
 
     @Bean
     public Docket createRestApi() {
