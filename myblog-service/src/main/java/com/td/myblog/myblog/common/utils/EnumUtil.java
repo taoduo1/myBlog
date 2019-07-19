@@ -1,8 +1,9 @@
 package com.td.myblog.myblog.common.utils;
 
-import com.td.myblog.myblog.common.utils.enums.interfaces.EnumNameBool;
-import com.td.myblog.myblog.common.utils.enums.interfaces.EnumNameCode;
-import com.td.myblog.myblog.common.utils.enums.interfaces.EnumNameIndex;
+import com.td.myblog.myblog.common.enums.BooleanEnum;
+import com.td.myblog.myblog.common.enums.interfaces.EnumNameBool;
+import com.td.myblog.myblog.common.enums.interfaces.EnumNameCode;
+import com.td.myblog.myblog.common.enums.interfaces.EnumNameIndex;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +16,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 枚举类转换成json
- *
- * @author TIM(JT)
- * @date 2017-05-22 18
- **/
-@SuppressWarnings("unchecked")
+ */
 public final class EnumUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EnumUtil.class);

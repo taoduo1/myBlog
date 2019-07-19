@@ -4,10 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
-/**
- * @author TIM(JT)
- * @date 2017-10-20 08
- **/
+
 public class ApplicationContextUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationContextUtil.class);

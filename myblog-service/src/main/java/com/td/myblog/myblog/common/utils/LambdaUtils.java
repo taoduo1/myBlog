@@ -6,10 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-/**
- *
- * @author huanxing.wu at 2018/10/17
- */
+
 public class LambdaUtils {
 
 	private LambdaUtils(){}

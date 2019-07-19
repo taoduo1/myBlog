@@ -1,4 +1,4 @@
-package com.td.myblog.myblog.common.utils.enums.interfaces;
+package com.td.myblog.myblog.common.enums.interfaces;
 
 import java.util.Objects;
 

@@ -1,15 +1,12 @@
-package com.td.myblog.myblog.common.utils;
+package com.td.myblog.myblog.common.enums;
 
 
-import com.td.myblog.myblog.common.utils.enums.interfaces.EnumNameBool;
-import com.td.myblog.myblog.common.utils.enums.interfaces.EnumNameCode;
-import com.td.myblog.myblog.common.utils.enums.interfaces.EnumNameIndex;
+import com.td.myblog.myblog.common.enums.interfaces.EnumNameBool;
+import com.td.myblog.myblog.common.enums.interfaces.EnumNameCode;
+import com.td.myblog.myblog.common.enums.interfaces.EnumNameIndex;
 
 /**
- * 性别
- *
- * @author Shenbin
- * @date 2017-07-26 09
+ *  bool 值枚举
  */
 public enum BooleanEnum implements EnumNameIndex, EnumNameCode, EnumNameBool {
 

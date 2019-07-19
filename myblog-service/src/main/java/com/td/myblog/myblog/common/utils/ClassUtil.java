@@ -16,8 +16,6 @@ import org.slf4j.LoggerFactory;
 /**
  * java类工具。
  * 用法： List<Class<?>> list = findClasses("com.bxsurvey.sys.process.controller");
- * @author heng.yao
- *
  */
 public class ClassUtil {
 

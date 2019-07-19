@@ -1,13 +1,10 @@
-package com.td.myblog.myblog.common.utils.enums.interfaces;
+package com.td.myblog.myblog.common.enums.interfaces;
 
 import java.util.Optional;
 
 /**
  * 枚举 接口
- *
- * @author TIM(JT)
- * @date 2017-05-22 18
- **/
+ */
 public interface EnumName {
 
     String getName();
