@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService{
     public void deleteService(int id) {
         userMapper.deleteUser(id);
     }
+
+    @Override
+    public List<User> findByAge(int age) {
+        return userMapper.selectByAge(age);
+    }
 }

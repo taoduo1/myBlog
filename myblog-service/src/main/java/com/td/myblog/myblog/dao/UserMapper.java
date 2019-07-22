@@ -45,4 +45,7 @@ public interface UserMapper {
      */
     @Delete("DELETE from user WHERE id = #{id}")
     void deleteUser(@Param("id") int id);
+
+
+    List<User> selectByAge(@Param("age") int id);
 }

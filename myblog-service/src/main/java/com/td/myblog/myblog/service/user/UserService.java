@@ -22,4 +22,6 @@ public interface UserService {
 
     void deleteService(int id);
 
+    List<User> findByAge(int age);
+
 }
