@@ -20,6 +20,7 @@ ___粗斜体文本___
 
 有哪些数据库优化方面的经验?
 mysql 中 myisam 与 innodb 的区别？
++ 
 mysql 中 varchar 与 char 的区别以及 varchar(50)中的 50 代表的涵义？
 MySQL 中 InnoDB 支持的四种事务隔离级别名称，以及逐级之间的区别？
 MySQL 中 InnoDB 引擎的行锁是通过加在什么上完成（或称实现）的？
