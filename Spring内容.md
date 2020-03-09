@@ -28,7 +28,7 @@ Spring 和 Struts 的区别？
 Spring AOP 中的织入你怎样理解？
 怎么样把某个请求映射到特定的方法上面
 谈谈 Spring 对 DAO 的支持
-07 其他部分
+spring boot 
 
 高并发系统的限流如何实现？
 高并发秒杀系统的设计
