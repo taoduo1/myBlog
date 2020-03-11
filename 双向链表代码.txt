@@ -1,0 +1,203 @@
+package com.taimeitech.mirs.dto.taoduo;
+
+import java.util.Stack;
+
+/*
+ *
+ * @Company 太美医疗科技
+ * @Description:
+ * @Author duo.tao
+ * @Date 26/02/2020 20:52
+ */
+public class Demo {
+
+	public static void main(String[] args) {
+		BidirectionalNode<String> node = new BidirectionalNode<>();
+		node.add("1");
+		node.add("2");
+		node.add("3");
+		node.add("4");
+		node.add("5");
+		for (int i = 0; i < node.size; i++) {
+			if (i ==2){
+				node.remove(3);
+			}
+			System.out.println(node.get(i));
+		}
+	}
+
+	/**
+	 * 双向链表定义节点类
+	 * @param <E>
+	 */
+	private static class BidirectionalNode<E> {
+
+		BidirectionalNode<E> prev;
+		BidirectionalNode<E> next;
+		E item;
+
+		BidirectionalNode<E> first;
+
+		BidirectionalNode<E> last;
+
+		int size;
+
+		BidirectionalNode(BidirectionalNode<E> prev, E item, BidirectionalNode<E> next) {
+			this.prev = prev;
+			this.next = next;
+			this.item = item;
+		}
+
+		BidirectionalNode() {}
+
+		//add方法,默认添加数据是从链表尾部添加,add():
+		public void add(E e) {
+			linkLast(e);
+		}
+
+		private void linkLast(E e) {
+			BidirectionalNode<E> newNode = new BidirectionalNode<>(last, e, null); //创建新的节点只想最后一个节点
+			BidirectionalNode<E> l = last;
+			last = newNode; //将创建的新节点定位仪尾结点
+			if (l == null) {//判断链表中是否已经存在节点，可以通过判断原有的最后一个节点
+				first = newNode; //没有存在节点，将新节点定位为头节点
+			} else {
+				l.next = newNode;//已存在节点
+			}
+			size++;
+		}
+
+		//get方法,通过索引得到需要的元素,双向链表好处是可以快速定位节点,通过前后两段定位,get(int index):
+		public E get(int index) {
+			if (index < 0 || index > size) {
+				return null;
+			}
+			return node(index).item;
+		}
+
+		private BidirectionalNode<E> node(int index) {
+			if (index < (size >> 1)) {
+				BidirectionalNode<E> node = first;
+				for (int i = 0; i < index; i++) {
+					node = node.next;
+				}
+				return node;
+			} else {
+				BidirectionalNode<E> node = this.last;
+				for (int i = size - 1; i > index; i--) {
+					node = node.prev;
+				}
+				return node;
+			}
+		}
+
+		public void add(int index, E e) {
+			if (index < 0 || index > size) {
+				return;
+			}
+			if (index == size) { //从尾节点插入元素
+				linkLast(e);
+			} else {//任意位置插入元素
+				BidirectionalNode<E> target = node(index);
+				BidirectionalNode<E> pre = target.prev;
+				BidirectionalNode<E> newNode = new BidirectionalNode<>(pre, e, target);
+				//判断是否有前驱
+				if (prev == null) {
+					first = newNode;
+				} else {//有前驱
+					pre.next = newNode;
+					target.prev = newNode;
+				}
+				size++;
+			}
+		}
+
+		//移除元素
+		public void remove(int index) {
+			if (index < 0 || index > size) {
+				return;
+			}
+			BidirectionalNode<E> node = node(index);
+			unlinkkNode(node);
+		}
+
+		private void unlinkkNode(BidirectionalNode<E> target) {
+			BidirectionalNode<E> pre = target.prev;
+			BidirectionalNode<E> next = target.next;
+			if (pre == null) {
+				first = target.next;
+			} else {
+				pre.next = target.next;
+			}
+			if (next == null) {
+				last = target.prev;
+			} else {
+				next = target.prev;
+			}
+			size--;
+		}
+
+	}
+
+
+	private static class OneWayNode<E>{
+
+		private E item;
+
+		private OneWayNode<E> next;
+
+		private OneWayNode<E> last;
+		private OneWayNode<E> first;
+		private  int size;
+
+		public OneWayNode(E item, OneWayNode<E> next) {
+			this.item = item;
+			this.next = next;
+		}
+
+		public OneWayNode() {}
+
+		public void add(E e) {
+			OneWayNode<E> newNode = new OneWayNode<>(e,next);
+			OneWayNode<E> l = last;
+			last = newNode;
+			if (l == null){
+				first = newNode;
+			}else {
+				l.next = newNode;
+			}
+			size++;
+		}
+
+		public void add(int index, E e){
+			if (index < 0 || index > size){
+				return;
+			}
+			if (index == size){
+				add(e);
+			}
+			OneWayNode<E> prev = get(index);
+			OneWayNode<E> newNode = new OneWayNode<>(e, prev.next);
+			//判断是否有前驱
+			if (index  == 0) {
+				first = newNode;
+			} else {//有前驱
+				prev.next = newNode;
+			}
+			size++;
+		}
+
+		public OneWayNode<E> get(int index){
+			if (index <  0 || index > size){
+				return null;
+			}
+			OneWayNode<E> node = first;
+			for (int i = 0; i < index; i++) {
+				node = node.next;
+			}
+			return node;
+		}
+
+	}
+
+}
