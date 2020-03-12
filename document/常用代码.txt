@@ -1,0 +1,18 @@
+常用代码
+
+
+
+状态转移时判断是否符合规定状态
+Arrays.asList("xxxx","xxx")
+
+public static boolean matchWorkflow(xxx xxx1, xxx xxx2) {
+		return xxx1.toindexs == null || xxx1.toindexs.contains(xxx2.index);
+}
+
+
+查询XXXX数据库中所有的表是否有XX字段
+select table_name from information_schema.columns where column_name = "XX" AND  TABLE_SCHEMA='XXXX';
+
+
+idea修改启动参数
+VM options 新增-Dspring.datasource.url=jdbc:p6spy:mysql://192.168.105.106:3306/mirs-2.16.5?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true 

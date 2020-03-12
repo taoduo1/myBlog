@@ -1,0 +1,44 @@
+
+数据库相关：
+
+1：	MySQL时间误差
+
+在mysql中如果定义datetime的类型，一定要指定精度为datetime(6)，否则在存储时间的的时候，mysql只精确到秒，会拿毫秒做四舍五入，导致
+某些情况下会有1秒的误差，把精度设置为6后，存储精度到毫秒了，导出为秒的时候，就不会有误差
+
+2：	mybatis 的if 标签中的判断单字符不能用单引号，有坑
+
+<#if test="staus == 'x' " >
+需要修改成
+<#if test="staus == 'x'.toString() " >
+或
+<#if test='staus == "x" ' >
+
+3：	数据库字符集
+
+utf8_unicode_ci
+utf8_unicode_cs
+
+utf8_general_ci
+utf8_general_cs
+
+
+ci 和cs区别
+utf8_general_ci 不区分大小写，这个你在注册用户名和邮箱的时候就要使用。
+utf8_general_cs 区分大小写，如果用户名和邮箱用这个 就会照成不良后果
+
+如果你对德语和法语的对比有更高的要求，才使用unicode，中国地区，general是更快的选择
+
+创建表时尽量统一字符集，否则会连表查询时，出现索引失效
+
+4：传入list时，应该根据业务判断是否将list判空
+	<choose>
+       <when test="list == null"> AND 1=2 </when>
+       <when test="list.size() == 0 "> AND 1=2 </when>
+       <otherwise> AND d.patient_id IN  <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach></otherwise>
+    </choose>
+	
+	
+java代码：
+
+
