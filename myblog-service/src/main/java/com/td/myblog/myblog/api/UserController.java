@@ -12,6 +12,8 @@ import com.td.myblog.myblog.entity.User;
 import com.td.myblog.myblog.service.user.UserService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +31,8 @@ public class UserController {
 
     @ApiOperation(value="获取用户", notes="获取用户")
     @RequestMapping(value = "/query",method = RequestMethod.GET)
-    public User testQuery() {
-        return userService.selectUserByName("1");
+    public User testQuery(@RequestParam("name") String name) {
+        return userService.selectUserByName(name);
     }
 
 

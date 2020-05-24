@@ -48,4 +48,8 @@ public class User {
     public void setMoney(Double money) {
         this.money = money;
     }
+
+    public void getMoneys(){
+        System.out.println(1);
+    }
 }
