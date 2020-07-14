@@ -11,15 +11,10 @@ package com.td.myblog.myblog.api;
 import com.td.myblog.myblog.entity.User;
 import com.td.myblog.myblog.service.user.UserService;
 import io.swagger.annotations.ApiOperation;
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -29,15 +24,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value="获取用户", notes="获取用户")
-    @RequestMapping(value = "/query",method = RequestMethod.GET)
+    @ApiOperation(value = "获取用户", notes = "获取用户")
+    @GetMapping(value = "/query")
     public User testQuery(@RequestParam("name") String name) {
         return userService.selectUserByName(name);
     }
 
 
-    @ApiOperation(value="获取用户", notes="获取用户")
-    @RequestMapping(value = "/findByAge",method = RequestMethod.GET)
+    @ApiOperation(value = "获取用户", notes = "获取用户")
+    @GetMapping(value = "/findByAge")
     public List<User> findByAge(@RequestParam Integer age) {
         return userService.findByAge(age);
     }

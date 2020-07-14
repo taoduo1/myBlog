@@ -4,10 +4,10 @@ import java.util.UUID;
 
 public class UuidUtil {
 
-	private UuidUtil() {
-	}
+    private UuidUtil() {
+    }
 
-	public static String nextId() {
-		return UUID.randomUUID().toString().replaceAll("-", "");
-	}
+    public static String nextId() {
+        return UUID.randomUUID().toString().replaceAll("-", "");
+    }
 }

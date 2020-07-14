@@ -3,9 +3,9 @@ package com.td.myblog.myblog.entity;
 /*
  *
  * @Company
- * @Description: 
+ * @Description:
  * @Author duo.tao
- * @Date 18/07/2019 17:24 
+ * @Date 18/07/2019 17:24
  */
 public class User {
 
@@ -49,7 +49,7 @@ public class User {
         this.money = money;
     }
 
-    public void getMoneys(){
+    public void getMoneys() {
         System.out.println(1);
     }
 }

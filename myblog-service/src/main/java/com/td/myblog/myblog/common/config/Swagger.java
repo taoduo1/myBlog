@@ -1,4 +1,4 @@
-package com.td.myblog.myblog;
+package com.td.myblog.myblog.common.config;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

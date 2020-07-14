@@ -14,6 +14,7 @@ public interface EnumIndex {
 
     /**
      * 当前枚举项的值（value）是否匹配传入参数。
+     *
      * @param value
      * @return
      */
@@ -24,6 +25,7 @@ public interface EnumIndex {
 
     /**
      * 当前枚举项的值（value）是否匹配传入参数。
+     *
      * @param value
      * @return
      */

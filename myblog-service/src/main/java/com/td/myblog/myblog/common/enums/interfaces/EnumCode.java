@@ -11,6 +11,7 @@ public interface EnumCode {
 
     /**
      * 当前枚举项的值（code）是否匹配传入参数。
+     *
      * @param value
      * @return
      */
@@ -20,6 +21,7 @@ public interface EnumCode {
 
     /**
      * 当前枚举项的值（code）是否匹配传入参数。
+     *
      * @param value
      * @return
      */
