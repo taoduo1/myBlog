@@ -77,6 +77,7 @@ public class DateUtil {
     private static final int MAX_HOUR_OF_DAY = 23;
     private static final int MAX_MIN_OF_HOUR = 59;
     private static final int MAX_SEC_OF_MIN = 59;
+
     private DateUtil() {
     }
 

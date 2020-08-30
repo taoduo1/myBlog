@@ -17,6 +17,8 @@ public class User {
 
     private Double money;
 
+    private String password;
+
     public Integer getId() {
         return id;
     }
@@ -49,7 +51,11 @@ public class User {
         this.money = money;
     }
 
-    public void getMoneys() {
-        System.out.println(1);
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

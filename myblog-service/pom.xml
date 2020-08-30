@@ -98,6 +98,12 @@
             <version>1.0.25</version>
         </dependency>
 
+        <!-- security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
 
         <!-- swagger2包引入-->
         <dependency>

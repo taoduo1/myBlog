@@ -157,8 +157,8 @@ public class ZipFileUtil {
     /**
      * 解压到指定目录
      *
-     * @param zipPath
-     * @param descDir
+     * @param zipFilePath
+     * @param destDir
      * @author isea533
      */
     public static void unZipFiles(String zipFilePath, String destDir) throws IOException {
@@ -169,7 +169,7 @@ public class ZipFileUtil {
      * 解压文件到指定目录
      *
      * @param zipFile
-     * @param descDir
+     * @param destDir
      * @author isea533
      */
     public static void unZipFiles(File zipFile, String destDir) throws IOException {

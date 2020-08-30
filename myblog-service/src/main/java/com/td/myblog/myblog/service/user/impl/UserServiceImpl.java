@@ -3,9 +3,9 @@ package com.td.myblog.myblog.service.user.impl;
 import com.td.myblog.myblog.dao.UserMapper;
 import com.td.myblog.myblog.entity.User;
 import com.td.myblog.myblog.service.user.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /*
@@ -19,7 +19,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
 
