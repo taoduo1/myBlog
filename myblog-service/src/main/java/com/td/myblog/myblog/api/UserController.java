@@ -36,8 +36,11 @@ public class UserController {
 
     @ApiOperation(value = "获取用户", notes = "获取用户")
     @GetMapping(value = "/findByAge")
-    public List<User> findByAge(@RequestParam Integer age) {
+    public List<User> findByAge(@RequestParam("age") Integer age) {
         return userService.findByAge(age);
     }
+
+
+    
 
 }

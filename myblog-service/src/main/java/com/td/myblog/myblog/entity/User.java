@@ -1,5 +1,11 @@
 package com.td.myblog.myblog.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.io.Serializable;
+import java.util.List;
+
 /*
  *
  * @Company
@@ -7,50 +13,33 @@ package com.td.myblog.myblog.entity;
  * @Author duo.tao
  * @Date 18/07/2019 17:24
  */
-public class User {
+public class User implements UserDetails, Serializable {
 
-    private Integer id;
-
-    private String name;
-
-    private Integer age;
-
-    private Double money;
-
+    private Long id;
+    private String username;
     private String password;
 
-    public Integer getId() {
+    private List<? extends GrantedAuthority> authorities;
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Double getMoney() {
-        return money;
-    }
-
-    public void setMoney(Double money) {
-        this.money = money;
-    }
-
+    @Override
     public String getPassword() {
         return password;
     }
@@ -58,4 +47,53 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public List<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
+    /**
+     * 用户账号是否过期
+     */
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    /**
+     * 用户账号是否被锁定
+     */
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    /**
+     * 用户密码是否过期
+     */
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    /**
+     * 用户是否可用
+     */
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
+    public static void main(String[] args) {
+
+        
+    }
+
 }
+

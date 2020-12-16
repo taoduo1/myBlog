@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
 
+
     @Override
     public User selectUserByName(String name) {
         return userMapper.findUserByName(name);
@@ -41,5 +42,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findByAge(int age) {
         return userMapper.selectByAge(age);
+    }
+
+
+    public static void main(String[] args) {
+        int i = 10;
+        float f = i;
+        double d = f;
+        byte b = (byte) d;
+        System.out.println(b);
     }
 }
