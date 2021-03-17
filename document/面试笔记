@@ -1,0 +1,68 @@
+hasmap的数据结构初始化容量：16
+扩容方式0.75*16，调用put
+线程池的大小是如何确定 2n+1
+消息队列kafuka
+特性：
+topic：
+ack机制
+如何使用
+微服务流程
+swagger常用注解
+@ApiModel：用在模型类上，对模型类做注释；
+
+@ApiModelProperty：用在属性上，对属性做注释
+
+@Api：用在controller上，对controller进行注释；
+
+@ApiOperation：用在API方法上，对该API做注释，说明API的作用；
+
+@ApiImplicitParams：用来包含API的一组参数注解，可以简单的理解为参数注解的集合声明；
+
+@ApiImplicitParam：用在@ApiImplicitParams注解中，也可以单独使用，说明一个请求参数的各个方面，该注解包含的常用选项有：
+
+paramType：参数所放置的地方，包含query、header、path、body以及form，最常用的是前四个。
+
+name：参数名；
+
+dataType：参数类型，可以是基础数据类型，也可以是一个class；
+
+required：参数是否必须传；
+
+value：参数的注释，说明参数的意义；
+
+defaultValue：参数的默认值；
+
+@ApiResponses：通常用来包含接口的一组响应注解，可以简单的理解为响应注解的集合声明；
+
+@ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息
+
+code：即httpCode，例如400 
+
+message：信息，例如"请求参数没填好"
+
+大数据量优化分页
+使用先使用范围查询定位 id （或者索引），然后再使用索引进行定位数据，能够提高好几倍查询速度。即先 select id，然后再 select *
+
+左连接和右连接
+　left join （左连接）：返回包括左表中的所有记录和右表中连接字段相等的记录。
+　　right join （右连接）：返回包括右表中的所有记录和左表中连接字段相等的记录。
+　　inner join （等值连接或者叫内连接）：只返回两个表中连接字段相等的行。
+　　full join （全外连接）：返回左右表中所有的记录和左右表中连接字段相等的记录
+
+三大范式
+确保每列保持原子性 所有字段值都是不可分解的原子值
+确保表中的每列都和主键相关 也就是说在一个数据库表中，一个表中只能保存一种数据，不可以把多种数据保存在同一张数据库表中
+每一列数据都和主键直接相关，而不能间接相关
+
+springboot的配置文件的加载顺序
+
+file:./config/ (当前项目路径config目录下);
+file:./ (当前项目路径下);
+classpath:/config/ (类路径config目录下);
+classpath:/ (类路径config下).
+
+启动jar包后如何修改配置文件
+项目启动命令
+java -jar genesys_data_etl-0.0.1-SNAPSHOT.jar 
+es查询
+分布式锁
