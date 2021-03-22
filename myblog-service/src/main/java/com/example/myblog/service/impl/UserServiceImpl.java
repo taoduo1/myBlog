@@ -1,5 +1,8 @@
 package com.example.myblog.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.myblog.entity.User;
 import com.example.myblog.mapper.UserMapper;
 import com.example.myblog.service.UserService;
@@ -32,4 +35,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         map.put("password",password);
         return userMapper.selectByMap(map);
     }
+
+    public IPage<User> finPageByNameAndPsd(String name, String password) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("name",name);
+        map.put("password",password);
+        QueryWrapper<User> wrapper = new QueryWrapper();
+        wrapper.eq("name", name).eq("password", password);
+
+        Page<User> page = new Page<>(1,2);
+
+        IPage<User> userIPage = userMapper.selectPage(page, wrapper);
+
+        IPage<Map<String, Object>> mapIPage = userMapper.selectMapsPage(page, wrapper);
+
+
+        System.out.println("总页数"+mapIPage.getPages());
+        System.out.println("总记录数"+mapIPage.getTotal());
+        List<Map<String, Object>> records = mapIPage.getRecords();
+        records.forEach(System.out::println);
+        return userIPage;
+    }
+
+
 }

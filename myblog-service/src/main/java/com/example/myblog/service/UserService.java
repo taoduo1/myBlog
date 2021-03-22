@@ -1,9 +1,11 @@
 package com.example.myblog.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.myblog.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -16,4 +18,6 @@ import java.util.List;
 public interface UserService extends IService<User> {
 
     List<User> finByNameAndPsd(String name,String password);
+
+    IPage<User> finPageByNameAndPsd(String name, String password);
 }

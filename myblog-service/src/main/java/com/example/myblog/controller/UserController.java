@@ -1,6 +1,7 @@
 package com.example.myblog.controller;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.myblog.entity.User;
 import com.example.myblog.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -38,5 +40,12 @@ public class UserController {
     public List<User> getUserInfo(@PathVariable("name") String name, @PathVariable("password") String password) {
         return service.finByNameAndPsd(name,password);
     }
+
+    @GetMapping("/finPageByNameAndPsd/{name}/{password}")
+    public IPage<User> finPageByNameAndPsd(@PathVariable("name") String name, @PathVariable("password") String password) {
+        return service.finPageByNameAndPsd(name,password);
+    }
+
+
 
 }
