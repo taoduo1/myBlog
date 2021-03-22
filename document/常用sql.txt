@@ -1,0 +1,61 @@
+
+根据项目名称、访视点盲态名称、受试者筛选号查询accno
+SELECT d.*  FROM dicom d 
+LEFT JOIN visit v on v.id = d.visit_id
+-- 受试者筛选号 
+WHERE d.patient_code = '01005' AND d.project_id = (SELECT project_id FROM project_config WHERE project_name LIKE '%BP102 NSCLC%')
+-- 访视点
+AND v.blind_name = 'mt002'
+
+
+
+查询数据库中某个字段在数据库中哪张表中
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.columns WHERE COLUMN_NAME='patient_id' AND TABLE_SCHEMA = 'mirs';
+
+根据accno 查询访视名称，项目名称，研究中心名称
+SELECT DISTINCT
+	d.accno AS accno,
+	p.project_name AS '项目名称',
+	d.site_name AS '研究中心名称',
+	d.site_code AS '研究中心编号',
+	d.visit_name AS '访视名称',
+	d.patient_code AS '受试者筛选号'
+FROM
+	dicom d
+LEFT JOIN project_config p ON p.project_id = d.project_id
+
+WHERE d.accno IN ('4825')
+
+	
+	
+查询回调数据包
+
+SELECT * FROM dicom_upload_callback WHERE json LIKE '{"AccNo":"3180%'
+
+查询为空
+
+SELECT DISTINCT
+	CONCAT( 'http://139.224.22.22/UniUpCenter/Default.aspx?AccNo=', accno, '&DateTime=', DATE_FORMAT(upload_date,'%Y%m%d'), '&PATID=', upload_patient_id ) AS url
+	
+FROM
+	dicom 
+WHERE
+	accno IN (
+SELECT
+	dsn.accno 
+FROM
+	dicom_serial_number dsn
+	LEFT JOIN dicom d ON d.accno = dsn.accno 
+	LEFT JOIN project_config pr ON pr.project_id = d.project_id
+WHERE
+	(dsn.modality IS NULL 
+	OR dsn.modality = '' )
+	AND pr.image_vendor = 'ebm'
+	AND dsn.is_removed = 0 
+	AND dsn.is_deleted = 0
+	AND pr.is_deleted = 0 
+	AND d.is_deleted = 0
+	)
+	
+根据accno查询dicom及项目信息
+SELECT d.patient_code,d.visit_name,d.accno,p.project_name,d.upload_status,ebm_shard FROM dicom d LEFT JOIN project_config p ON d.project_id =p.project_id WHERE d.accno = '7317'
