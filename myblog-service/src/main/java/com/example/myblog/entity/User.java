@@ -4,27 +4,36 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * <p>
  * 
  * </p>
  *
- * @author zkb
+ * @author duo.tao
  * @since 2021-03-22
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@Entity
+@Table(name = "user")
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer"})
 public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
