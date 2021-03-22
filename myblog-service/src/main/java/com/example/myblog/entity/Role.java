@@ -15,42 +15,21 @@ import javax.persistence.Column;
  * 
  * </p>
  *
- * @author zkb
+ * @author duo.tao
  * @since 2021-03-22
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class User extends Model<User> {
+public class Role extends Model<Role> {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
-    /**
-     * 年龄
-     */
-    @Column(name = "age" ,columnDefinition = "int DEFAULT NULL COMMENT '年龄'")
-    private Integer age;
-
-    /**
-     * 名字
-     */
     @Column(name = "name" , columnDefinition = "varchar(50) DEFAULT NULL COMMENT '名字'")
     private String name;
-
-    /**
-     * 密码
-     */
-    @Column(name = "password" , columnDefinition = "varchar(50) DEFAULT NULL COMMENT '密码'")
-    private String password;
-
-    /**
-     * 性别：1男，2女
-     */
-    @Column(name = "sex" ,columnDefinition = "int DEFAULT NULL COMMENT '性别：1男，2女'")
-    private Integer sex;
 
 
     @Override

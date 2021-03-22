@@ -1,8 +1,19 @@
 package com.example.myblog.service;
 
 import com.example.myblog.entity.User;
+import com.baomidou.mybatisplus.extension.service.IService;
 
-public interface UserService {
+import java.util.List;
 
-    User getUserById(Integer id);
+/**
+ * <p>
+ *  服务类
+ * </p>
+ *
+ * @author zkb
+ * @since 2021-03-22
+ */
+public interface UserService extends IService<User> {
+
+    List<User> finByNameAndPsd(String name,String password);
 }
