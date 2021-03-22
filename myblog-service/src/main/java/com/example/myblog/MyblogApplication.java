@@ -2,8 +2,12 @@ package com.example.myblog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 
 @SpringBootApplication
+@EntityScan("com.example.myblog.entity")
 public class MyblogApplication {
 
     public static void main(String[] args) {
