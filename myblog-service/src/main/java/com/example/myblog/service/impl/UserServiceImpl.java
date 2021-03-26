@@ -48,12 +48,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         IPage<User> userIPage = userMapper.selectPage(page, wrapper);
 
         IPage<Map<String, Object>> mapIPage = userMapper.selectMapsPage(page, wrapper);
-
-
-        System.out.println("总页数"+mapIPage.getPages());
-        System.out.println("总记录数"+mapIPage.getTotal());
-        List<Map<String, Object>> records = mapIPage.getRecords();
-        records.forEach(System.out::println);
         return userIPage;
     }
 
