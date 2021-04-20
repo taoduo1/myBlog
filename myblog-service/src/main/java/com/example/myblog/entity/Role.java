@@ -1,40 +1,62 @@
 package com.example.myblog.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+import com.example.myblog.common.modules.common.entity.BaseEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
-import javax.persistence.Column;
+import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 /**
- * <p>
- * 
- * </p>
+ * <p>  系统管理-角色表  </p>
  *
- * @author duo.tao
- * @since 2021-03-22
+ * @author: duo.tao
+ * @date: 2019-08-20
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-public class Role extends Model<Role> {
+@ApiModel(description = "系统管理-角色表 ")
+@TableName("t_sys_role")
+public class Role extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    /**
+     * 主键ID
+     */
+	@ApiModelProperty(value = "主键ID")
+	@TableId(value="id", type= IdType.AUTO)
+	private Integer id;
+    /**
+     * 角色编码
+     */
+	@ApiModelProperty(value = "角色编码")
+	@TableField("code")
+	@NotBlank(message = "角色编码不能为空")
+	private String code;
+    /**
+     * 角色名称
+     */
+	@ApiModelProperty(value = "角色名称")
+	@TableField("name")
+	@NotBlank(message = "角色名称不能为空")
+	private String name;
+    /**
+     * 角色描述
+     */
+	@ApiModelProperty(value = "角色描述")
+	@TableField("remarks")
+	private String remarks;
 
-    @Column(name = "name" , columnDefinition = "varchar(50) DEFAULT NULL COMMENT '名字'")
-    private String name;
-
-
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
+	@Override
+	protected Serializable pkVal() {
+		return this.id;
+	}
 
 }

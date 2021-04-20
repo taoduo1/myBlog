@@ -1,6 +1,5 @@
 package com.example.myblog.util;
 
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
@@ -81,7 +80,7 @@ public class MysqlGenerator {
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                 return projectPath + "/src/main/resources/mappers/"
-                        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+                        + "/" + tableInfo.getEntityName() + "Mapper" ;//+ StringPool.DOT_XML;
             }
         });
         /*

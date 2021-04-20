@@ -1,0 +1,22 @@
+spring 架构
+核心： beans core context spEL
+
+core和beans模块是框架的基础部分，提供IOC(控制反转)和DI(依赖注入)特性，是通过引入IOC容器，利用依赖关系注入的方式，实现对象的解耦。
+
+spring 如何利用多级缓存的方式来解决循环依赖的问题
+
+
+beanFactory 和 applicationContext 的区别
+懒加载和非懒加载的区别
+beanFactory 是bean需要使用的时候才去加载
+applicationContext 是非懒加载，一开始就加载进去了（可以指定为懒加载）
+
+applicationContext 是 beanFactory 的扩张
+
+控制反转和依赖注入：依赖倒置原则
+
+ioc的核心思想：资源不由使用资源的双方管理，而由不使用资源的第三方管理
+好处是：1：资源集中管理，实现资源的可配置和易管理，2：降低了使用资源双方的依赖程度
+
+
+
