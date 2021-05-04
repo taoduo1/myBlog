@@ -2,7 +2,7 @@ package com.example.myblog.common.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.myblog.common.modules.common.dto.output.ApiResult;
+import com.example.myblog.common.resultdto.ApiResult;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletResponse;

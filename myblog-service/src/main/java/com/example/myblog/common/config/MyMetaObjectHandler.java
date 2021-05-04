@@ -28,17 +28,17 @@ public class MyMetaObjectHandler extends MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         LOG.info(" -------------------- start insert fill ...  --------------------");
-        if (metaObject.hasGetter("gmtCreate") && metaObject.hasGetter("gmtModified")) {
-            setFieldValByName("gmtCreate", new Date(), metaObject);
-            setFieldValByName("gmtModified", new Date(), metaObject);
+        if (metaObject.hasGetter("createTime") && metaObject.hasGetter("updateTime")) {
+            setFieldValByName("createTime", new Date(), metaObject); //创建时间
+            setFieldValByName("updateTime", new Date(), metaObject); //修改时间
         }
 
         // 日志输出 ================================================================================================
-        Date gmtCreate = (Date) this.getFieldValByName("gmtCreate", metaObject);
-        Date gmtModified = (Date) this.getFieldValByName("gmtModified", metaObject);
-        if ( gmtCreate != null && gmtModified != null ){
+        Date createTime = (Date) this.getFieldValByName("createTime", metaObject);
+        Date updateTime = (Date) this.getFieldValByName("updateTime", metaObject);
+        if ( createTime != null && updateTime != null ){
             try {
-                LOG.info("MyBatisPlus自动填充处理 - gmtCreate:{} gmtModified:{}", DateTimeUtils.dateToDateTimeString( gmtCreate ), DateTimeUtils.dateToDateTimeString( gmtModified ) );
+                LOG.info("MyBatisPlus自动填充处理 - gmtCreate:{} gmtModified:{}", DateTimeUtils.dateToDateTimeString( createTime ), DateTimeUtils.dateToDateTimeString( updateTime ) );
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -52,15 +52,15 @@ public class MyMetaObjectHandler extends MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         LOG.info(" -------------------- start update fill ...  --------------------");
-        if (metaObject.hasGetter("et.gmtModified")) {
-            setFieldValByName("gmtModified", new Date(), metaObject);
+        if (metaObject.hasGetter("et.updateTime")) {
+            setFieldValByName("updateTime", new Date(), metaObject);
         }
 
         // 日志输出 ================================================================================================
-        Date gmtModified = (Date) this.getFieldValByName("gmtModified", metaObject);
-        if ( gmtModified != null ){
+        Date updateTime = (Date) this.getFieldValByName("updateTime", metaObject);
+        if ( updateTime != null ){
             try {
-                LOG.info("MyBatisPlus自动填充处理 - gmtModified:{}", DateTimeUtils.dateToDateTimeString( gmtModified ));
+                LOG.info("MyBatisPlus自动填充处理 - gmtModified:{}", DateTimeUtils.dateToDateTimeString( updateTime ));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
