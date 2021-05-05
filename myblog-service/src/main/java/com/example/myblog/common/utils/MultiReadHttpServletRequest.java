@@ -1,6 +1,5 @@
 package com.example.myblog.common.utils;
 
-import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ReadListener;
@@ -125,7 +124,7 @@ public class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
         // json对象转json字符串 转javabean
 //        SecurityUser user = JSONObject.parseObject(JSONObject.toJSONString(bodyMap), SecurityUser.class);
         // json对象转json字符串
-        return JSONObject.toJSONString(bodyMap);
+        return JsonUtil.toJsonStr(bodyMap);
     }
 
     /**

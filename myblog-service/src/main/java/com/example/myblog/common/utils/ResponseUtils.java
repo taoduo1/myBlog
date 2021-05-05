@@ -1,7 +1,5 @@
 package com.example.myblog.common.utils;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.example.myblog.common.resultdto.ApiResult;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,7 +30,7 @@ public class ResponseUtils {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
             out = response.getWriter();
-            out.println(JSON.toJSONString(result));
+            out.println(JsonUtil.toJsonStr(result));
         } catch (Exception e) {
             log.error(e + "输出JSON出错");
         } finally {
@@ -55,7 +53,7 @@ public class ResponseUtils {
         httpServletResponse.setContentType("application/json; charset=utf-8");
         try {
             writer = httpServletResponse.getWriter();
-            writer.print(JSONObject.toJSONString(new ApiResult(status,msg,null)));
+            writer.print(JsonUtil.toJsonStr(new ApiResult(status,msg,null)));
         } catch (IOException e) {
             log.error("响应报错", e.getMessage());
         } finally {
