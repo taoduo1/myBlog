@@ -1,10 +1,14 @@
 package com.example.myblog.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
 import com.example.myblog.common.api.BaseController;
+import com.example.myblog.common.resultdto.ApiResult;
+import com.example.myblog.entity.User;
+import com.example.myblog.service.UserService;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
  * <p>
@@ -17,5 +21,18 @@ import com.example.myblog.common.api.BaseController;
 @RestController
 @RequestMapping("/user")
 public class UserController extends BaseController {
+
+    @Resource
+    private UserService userService;
+
+    @GetMapping(value = "/get/{id}")
+    public ApiResult get(@PathVariable String id) {
+        return new ApiResult(userService.selectById(id));
+    }
+
+    @PostMapping(value = "/save")
+    public ApiResult save(@Valid @RequestBody User user) {
+        return new ApiResult(userService.insert(user));
+    }
 
 }
