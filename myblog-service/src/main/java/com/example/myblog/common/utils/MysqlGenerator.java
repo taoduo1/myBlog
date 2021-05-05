@@ -46,7 +46,7 @@ public class MysqlGenerator {
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://47.105.249.25:3306/taoduo?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false");
         // dsc.setSchemaName("public");
-        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+        dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
         mpg.setDataSource(dsc);
@@ -80,7 +80,7 @@ public class MysqlGenerator {
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                 return projectPath + "/src/main/resources/mappers/"
-                        + "/" + tableInfo.getEntityName() + "Mapper" ;//+ StringPool.DOT_XML;
+                        + "/" + tableInfo.getEntityName() + "Mapper.xml" ;//+ StringPool.DOT_XML;
             }
         });
         /*
@@ -112,14 +112,13 @@ public class MysqlGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-//        strategy.setSuperEntityClass("com.baomidou.ant.common.BaseEntity");
+        // 实体类的父类：如果有就配置，记得加包名
+        strategy.setSuperEntityClass("com.example.myblog.common.entity.BaseEntity");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         // 公共父类
-//        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
-        // 写于父类中的公共字段
-//        strategy.setSuperEntityColumns("id");
-        strategy.setInclude(new String[]{"permission"});
+        strategy.setSuperControllerClass("com.example.myblog.common.api.BaseController");
+        strategy.setInclude(new String[]{"user","role","user_role","permission","role_permission"});
         strategy.setControllerMappingHyphenStyle(true);
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());

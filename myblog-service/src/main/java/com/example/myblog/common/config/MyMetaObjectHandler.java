@@ -1,17 +1,16 @@
 package com.example.myblog.common.config;
 
-import com.example.myblog.common.utils.DateTimeUtils;
+import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
+import com.example.myblog.common.utils.DateUtil;
 import org.apache.ibatis.reflection.MetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import com.baomidou.mybatisplus.mapper.*;
 
-import java.text.ParseException;
 import java.util.Date;
 
 /**
- *  <p> MyBatisPlus自定义字段自动填充处理类 - 实体类中使用 @TableField注解 </p>
+ * <p> MyBatisPlus自定义字段自动填充处理类 - 实体类中使用 @TableField注解 </p>
  *
  * @description: 注意前端传值时要为null
  * @author: duo.tao
@@ -36,12 +35,8 @@ public class MyMetaObjectHandler extends MetaObjectHandler {
         // 日志输出 ================================================================================================
         Date createTime = (Date) this.getFieldValByName("createTime", metaObject);
         Date updateTime = (Date) this.getFieldValByName("updateTime", metaObject);
-        if ( createTime != null && updateTime != null ){
-            try {
-                LOG.info("MyBatisPlus自动填充处理 - gmtCreate:{} gmtModified:{}", DateTimeUtils.dateToDateTimeString( createTime ), DateTimeUtils.dateToDateTimeString( updateTime ) );
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        if (createTime != null && updateTime != null) {
+            LOG.info("MyBatisPlus自动填充处理 - gmtCreate:{} gmtModified:{}", DateUtil.format(createTime, DateUtil.YYYY_MM_DD), DateUtil.format(updateTime, DateUtil.YYYY_MM_DD));
         }
 
     }
@@ -58,12 +53,8 @@ public class MyMetaObjectHandler extends MetaObjectHandler {
 
         // 日志输出 ================================================================================================
         Date updateTime = (Date) this.getFieldValByName("updateTime", metaObject);
-        if ( updateTime != null ){
-            try {
-                LOG.info("MyBatisPlus自动填充处理 - gmtModified:{}", DateTimeUtils.dateToDateTimeString( updateTime ));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        if (updateTime != null) {
+            LOG.info("MyBatisPlus自动填充处理 - gmtModified:{}", DateUtil.format(updateTime, DateUtil.YYYY_MM_DD));
         }
     }
 

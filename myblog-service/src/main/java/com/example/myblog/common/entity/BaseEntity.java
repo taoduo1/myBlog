@@ -10,7 +10,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.Future;
-import javax.validation.constraints.Past;
 import java.util.Date;
 
 /**
@@ -29,16 +28,14 @@ public abstract class BaseEntity<T extends Model> extends Model<T> {
     /**
      * 主键
      */
-    @ApiModelProperty(value = "主键")
-    @TableId(value="id", type= IdType.AUTO)
-    private Integer id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
     /**
      * 创建日期 - 现在时表示主动创建
      */
     @ApiModelProperty(value = "创建日期")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
-    @Past(message = "创建时间必须是过去时间")
     private Date createTime;
     /**
      * 创建人
@@ -60,4 +57,11 @@ public abstract class BaseEntity<T extends Model> extends Model<T> {
     @ApiModelProperty(value = "修改人")
     @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
     private Long updateBy;
+
+    /**
+     * 备注
+     */
+    @ApiModelProperty(value = "备注")
+    @TableField(value = "remark", fill = FieldFill.INSERT_UPDATE)
+    private String remark;
 }

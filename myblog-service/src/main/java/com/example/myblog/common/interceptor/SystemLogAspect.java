@@ -3,7 +3,7 @@ package com.example.myblog.common.interceptor;
 
 import com.example.myblog.common.config.Constants;
 import com.example.myblog.common.resultdto.ApiResult;
-import com.example.myblog.common.utils.DateTimeUtils;
+import com.example.myblog.common.utils.DateUtil;
 import com.example.myblog.common.utils.IpUtils;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -63,7 +63,7 @@ public class SystemLogAspect {
         ApiResult result = (ApiResult) joinPoint.proceed(joinPoint.getArgs());
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
-        log.info("**********   Url: {}, Start: {}, End: {}, Total: {}ms, Code: {}   **********", url, DateTimeUtils.dateFormat(new Date(startTime), "yyyy-MM-dd HH:mm:ss:SSS"), DateTimeUtils.dateFormat(new Date(endTime), "yyyy-MM-dd HH:mm:ss:SSS"), totalTime, result.getCode());
+        log.info("**********   Url: {}, Start: {}, End: {}, Total: {}ms, Code: {}   **********", url, DateUtil.format(new Date(startTime), DateUtil.YYYY_MM_DD_HH_MM_SS), DateUtil.format(new Date(endTime), DateUtil.YYYY_MM_DD_HH_MM_SS_SSS), totalTime, result.getCode());
 
         // 插入系统日志表 暂时不需要
 /*        SysLog sysLog = new SysLog();
