@@ -3,11 +3,11 @@ package com.example.myblog;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@EntityScan("com.example.myblog.entity")
-@MapperScan("com.example.myblog.mapper")
+@MapperScan({"com.gitee.sunchenbin.mybatis.actable.dao.*"})
+@ComponentScan("com.gitee.sunchenbin.mybatis.actable.manager.*")
 public class MyblogApplication {
 
     public static void main(String[] args) {
