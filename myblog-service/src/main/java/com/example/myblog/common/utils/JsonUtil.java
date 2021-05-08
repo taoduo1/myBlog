@@ -1,6 +1,7 @@
 package com.example.myblog.common.utils;
 
 
+import com.example.myblog.entity.User;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
@@ -36,12 +37,18 @@ public class JsonUtil {
      * @param object to json bean
      * @return jsonStr
      */
-    public static String toJsonStr(Object object) {
+    public static String jsonToBean(Object object) {
         String gsonString = null;
         if (gson != null) {
             gsonString = gson.toJson(object);
         }
         return gsonString;
+    }
+
+
+    public static <T> T jsonToBean(String str, Class<T>  classOfT) {
+        if (DataUtil.isNullOrEmpty(str)) return null;
+        return gson.fromJson(str,classOfT);
     }
 
     /**
@@ -108,11 +115,13 @@ public class JsonUtil {
 
 
     public static void main(String[] args) {
-        /*List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        System.out.println(JsonUtil.toJsonStr(list));*/
+        User user = new User();
+        user.setName("name");
+        user.setCode("code");
+
+        String userStr = JsonUtil.jsonToBean(user);
+        User newUser = (User) JsonUtil.jsonToBean(userStr, User.class);
+        System.out.println(newUser.getCode());
 
 
     }

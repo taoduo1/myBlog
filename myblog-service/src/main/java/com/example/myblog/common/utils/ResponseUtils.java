@@ -30,7 +30,7 @@ public class ResponseUtils {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
             out = response.getWriter();
-            out.println(JsonUtil.toJsonStr(result));
+            out.println(JsonUtil.jsonToBean(result));
         } catch (Exception e) {
             log.error(e + "输出JSON出错");
         } finally {
@@ -53,7 +53,7 @@ public class ResponseUtils {
         httpServletResponse.setContentType("application/json; charset=utf-8");
         try {
             writer = httpServletResponse.getWriter();
-            writer.print(JsonUtil.toJsonStr(new ApiResult(status,msg,null)));
+            writer.print(JsonUtil.jsonToBean(new ApiResult(status,msg,null)));
         } catch (IOException e) {
             log.error("响应报错", e.getMessage());
         } finally {

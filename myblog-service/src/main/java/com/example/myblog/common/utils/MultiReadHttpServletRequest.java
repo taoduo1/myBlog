@@ -124,7 +124,7 @@ public class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
         // json对象转json字符串 转javabean
 //        SecurityUser user = JSONObject.parseObject(JSONObject.toJSONString(bodyMap), SecurityUser.class);
         // json对象转json字符串
-        return JsonUtil.toJsonStr(bodyMap);
+        return JsonUtil.jsonToBean(bodyMap);
     }
 
     /**

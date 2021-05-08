@@ -23,7 +23,7 @@ public class IpUtils {
      * @param request:
      * @return: java.lang.String
      */
-    public static String getIpAdrress(HttpServletRequest request) {
+    public static String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
@@ -41,7 +41,7 @@ public class IpUtils {
             ip = request.getHeader("HTTP_X_FORWARDED_FOR");
         }
         // 如果是多级代理，那么取第一个ip为客户ip
-        if (ip != null && ip.indexOf(",") != -1) {
+        if (ip != null && ip.contains(",")) {
             ip = ip.substring(ip.lastIndexOf(",") + 1, ip.length()).trim();
         }
         return ip;
@@ -72,9 +72,8 @@ public class IpUtils {
                     return true;
                 }
             case SECTION_5:
-                switch (b1) {
-                    case SECTION_6:
-                        return true;
+                if (b1 == SECTION_6) {
+                    return true;
                 }
             default:
                 return false;
@@ -195,7 +194,7 @@ public class IpUtils {
             while (netInterfaces.hasMoreElements()) {
                 NetworkInterface ni = (NetworkInterface) netInterfaces.nextElement();
                 InetAddress ip = ni.getInetAddresses().nextElement();
-                if (!ip.isLoopbackAddress() && ip.getHostAddress().indexOf(":") == -1) {
+                if (!ip.isLoopbackAddress() && !ip.getHostAddress().contains(":")) {
                     localIP = ip.getHostAddress();
                     break;
                 }
@@ -219,7 +218,7 @@ public class IpUtils {
         String[] intArr = ip.split("\\.");
         int[] ipInt = new int[intArr.length];
         for (int i = 0; i <intArr.length ; i++) {
-            ipInt[i] = new Integer(intArr[i]).intValue();
+            ipInt[i] = new Integer(intArr[i]);
         }
         return ipInt[0] * 256 * 256 * 256 + + ipInt[1] * 256 * 256 + ipInt[2] * 256 + ipInt[3];
     }
