@@ -27,13 +27,13 @@ public class RolePermission extends BaseEntity<RolePermission> {
      * 角色id
      */
     @TableField("role_id")
-    private Long roleId;
+    private Integer roleId;
 
     /**
      * 权限id
      */
     @TableField("permission_id")
-    private Long permissionId;
+    private Integer permissionId;
 
 
 

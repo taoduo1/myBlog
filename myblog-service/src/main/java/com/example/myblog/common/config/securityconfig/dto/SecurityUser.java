@@ -1,22 +1,22 @@
 package com.example.myblog.common.config.securityconfig.dto;
 
 
+import com.example.myblog.entity.Role;
 import com.example.myblog.entity.User;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.StringJoiner;
 
 /**
- *  <p> 安全认证用户详情信息 </p>
- *
- * @description :
- * @author : zhengqing
- * @date : 2019/10/14 10:11
+ * 安全认证用户详情信息
  */
 @Data
 @Slf4j
@@ -25,9 +25,19 @@ public class SecurityUser implements UserDetails {
      * 当前登录用户
      */
     private transient User currentUserInfo;
+    /**
+     * 角色
+     */
+    private transient List<Role> roleList;
 
-    public SecurityUser() {
-    }
+    /**
+     * 当前用户所拥有角色代码
+     */
+    private transient String roleCodes;
+
+    private String jwtToken;
+
+    public SecurityUser() { }
 
     public SecurityUser(User user) {
         if (user != null) {
@@ -35,11 +45,33 @@ public class SecurityUser implements UserDetails {
         }
     }
 
+    public SecurityUser(User user, List<Role> roleList,String jwtToken) {
+        if (user != null) {
+            this.currentUserInfo = user;
+            this.roleList = roleList;
+            this.jwtToken = jwtToken;
+            if (!CollectionUtils.isEmpty(roleList)){
+                StringJoiner roleCodes = new StringJoiner(",", "[", "]");
+                roleList.forEach(e -> roleCodes.add(e.getCode()));
+                this.roleCodes = roleCodes.toString();
+            }
+        }
+    }
+
+    /**
+     * 获取当前用户所具有的角色
+     *
+     * @return
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("admin");
-        authorities.add(authority);
+        if (!CollectionUtils.isEmpty(this.roleList)) {
+            for (Role role : this.roleList) {
+                SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getCode());
+                authorities.add(authority);
+            }
+        }
         return authorities;
     }
 

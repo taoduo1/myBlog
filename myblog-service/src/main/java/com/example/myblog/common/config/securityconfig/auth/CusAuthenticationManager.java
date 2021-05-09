@@ -9,11 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 
 /**
- * <p> 自定义认证管理器 </p>
- *
- * @author : zhengqing
- * @description :
- * @date : 2019/10/12 14:49
+ * 自定义认证管理器
  */
 @Component
 public class CusAuthenticationManager implements AuthenticationManager {
@@ -30,7 +26,7 @@ public class CusAuthenticationManager implements AuthenticationManager {
         if (Objects.nonNull(result)) {
             return result;
         }
-        throw new ProviderNotFoundException("Authentication failed!");
+        throw new ProviderNotFoundException("认证失败");
     }
 
 }

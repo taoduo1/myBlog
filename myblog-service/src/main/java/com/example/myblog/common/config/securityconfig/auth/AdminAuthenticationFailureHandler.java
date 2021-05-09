@@ -16,11 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- *  <p> 认证失败处理 - 前后端分离情况下返回json数据格式 </p>
- *
- * @description :
- * @author : zhengqing
- * @date : 2019/10/12 15:33
+ * 认证失败处理 - 前后端分离情况下返回json数据格
  */
 @Slf4j
 @Component

@@ -1,36 +1,64 @@
 package com.example.myblog.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- *  <p> 初次体验Spring Security </p>
+ *  <p> Spring Security - 权限测试api </p>
  *
  * @author：  zhengqing <br/>
  * @date：  2019/9/30$ 9:37$ <br/>
  * @version：  <br/>
  */
-@Controller
+@Slf4j
+@RestController
 public class IndexController {
 
+    /*@GetMapping("/")
+    public ModelAndView showHome() {
+        return new ModelAndView("home.html");
+    }
+
     @GetMapping("/index")
-    @ResponseBody
     public String index() {
         return "Hello World ~";
     }
 
-    @RequestMapping("/login")
-    public String showLogin() {
-        return "login.html";
+    @GetMapping("/login")
+    public ModelAndView login() {
+        return new ModelAndView("login.html");
     }
 
     @GetMapping("/home")
-    @ResponseBody
     public String home() {
-        return "欢迎来到主页 ~";
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        log.info("登陆人：" + name);
+        return "Hello~ " + name;
     }
 
+    @GetMapping(value ="/admin")
+    // 访问路径`/admin` 具有`ADMIN`角色权限   【这种是写死方式】
+//    @PreAuthorize("hasPermission('/admin','ADMIN')")
+    public String admin() {
+        return "Hello~ 管理员";
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return "Hello~ 测试权限访问接口";
+    }
+
+    *//**
+     * 登录异常处理 - 前后端一体的情况下
+     * @param request
+     * @param response
+     *//*
+    @RequestMapping("/login/error")
+    public void loginError(HttpServletRequest request, HttpServletResponse response) {
+        AuthenticationException e = (AuthenticationException) request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+        log.error(e.getMessage());
+        ResponseUtils.out(response, ApiResult.fail(e.getMessage()));
+    }
+*/
 }
 

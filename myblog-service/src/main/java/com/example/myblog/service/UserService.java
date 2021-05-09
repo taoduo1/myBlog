@@ -1,7 +1,7 @@
 package com.example.myblog.service;
 
-import com.example.myblog.entity.User;
 import com.baomidou.mybatisplus.service.IService;
+import com.example.myblog.entity.User;
 
 /**
  * <p>
@@ -12,5 +12,12 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2021-05-05
  */
 public interface UserService extends IService<User> {
+
+    void setUserContext(String sessionId, User userContext);
+
+    User getUserContext(String sessionId) ;
+
+    void cleanCache(String sessionId);
+
 
 }

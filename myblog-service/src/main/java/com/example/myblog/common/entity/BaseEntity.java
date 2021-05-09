@@ -29,7 +29,7 @@ public abstract class BaseEntity<T extends Model> extends Model<T> {
      * 主键
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     /**
      * 创建日期 - 现在时表示主动创建
@@ -42,7 +42,7 @@ public abstract class BaseEntity<T extends Model> extends Model<T> {
      */
     @ApiModelProperty(value = "创建人")
     @TableField(value = "create_by", fill = FieldFill.INSERT)
-    private Long createBy;
+    private Integer createBy;
 
     /**
      * 修改时间 - 过去分词表示被动更新
@@ -56,7 +56,7 @@ public abstract class BaseEntity<T extends Model> extends Model<T> {
      */
     @ApiModelProperty(value = "修改人")
     @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
-    private Long updateBy;
+    private Integer updateBy;
 
     /**
      * 备注
