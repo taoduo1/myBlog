@@ -4,11 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *  <p> 全局常用变量 </p>
- *
- * @description :
- * @author : duo.tao
- * @date : 2019/10/12 14:47
+ * 全局常用变量
  */
 public class Constants {
 

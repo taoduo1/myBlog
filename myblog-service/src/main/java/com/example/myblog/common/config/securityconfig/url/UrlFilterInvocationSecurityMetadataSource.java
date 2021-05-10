@@ -57,7 +57,7 @@ public class UrlFilterInvocationSecurityMetadataSource implements FilterInvocati
         List<Permission> permissionList = permissionMapper.selectList(null);
         for (Permission permission : permissionList) { // TODO: 2021/5/10 对路径进行校验，只留下干净的URL
             // 获取该url所对应的权限
-            if (requestUrl.equals(permission.getUrl())) {
+            if (requestUrl.contains(permission.getUrl())) {
                 List<RolePermission> permissions = rolePermissionMapper.selectList(new EntityWrapper<RolePermission>().eq("permission_id", permission.getId()));
                 List<String> roles = new LinkedList<>();
                 if (!CollectionUtils.isEmpty(permissions)){

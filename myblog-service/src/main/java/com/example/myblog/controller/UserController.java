@@ -5,6 +5,7 @@ import com.example.myblog.common.api.BaseController;
 import com.example.myblog.common.resultdto.ApiResult;
 import com.example.myblog.entity.User;
 import com.example.myblog.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,8 +26,9 @@ public class UserController extends BaseController {
     @Resource
     private UserService userService;
 
+    @ApiOperation(value = "获取用户信息")
     @GetMapping(value = "/get/{id}")
-    public ApiResult get(@PathVariable String id) {
+    public ApiResult get(@PathVariable Integer id) {
         return new ApiResult(userService.selectById(id));
     }
 

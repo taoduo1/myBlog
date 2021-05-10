@@ -17,6 +17,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 
 /**
@@ -52,14 +53,12 @@ public class AdminAuthenticationProvider implements AuthenticationProvider {
                 // 主题 - 存用户名
                 .setSubject(authentication.getName())
                 // 过期时间 - 30分钟
-//                .setExpiration(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + 120 * 60 * 1000))
                 // 加密算法和密钥
                 .signWith(SignatureAlgorithm.HS512, Constants.SALT)
                 .compact();
 
         // 前后端分离情况下 处理逻辑...
-        // 更新登录令牌 - 之后访问系统其它接口直接通过token认证用户权限...
-        //String token = PasswordUtils.encodePassword(System.currentTimeMillis() + "duo.tao", "duo.tao");
         // 在此处写入前端返回
         User user = userDetailService.findById(userInfo.getCurrentUserInfo().getId());
         userService.setUserContext(jwt,user);

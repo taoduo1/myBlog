@@ -21,7 +21,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 /**
  * @author : duo.tao
- * @description : spring security 核心配置类
+ * @description : spring security 核心配置类/
+ * 
  * @date : 2021/5/5 12:29
  */
 @Configuration
@@ -81,7 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatcher("/**").authorizeRequests();
 
         // 禁用CSRF 开启跨域
-        http.csrf().disable().cors();
+        http.csrf().disable();
 
         // 未登录认证异常
         http.exceptionHandling().authenticationEntryPoint(adminAuthenticationEntryPoint);
@@ -97,19 +98,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 return o;
             }
         });
-
-        // 不创建会话 - 即通过前端传token到后台过滤器中验证是否存在访问权限
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        // 登录处理 - 前后端一体的情况下
-//        registry.and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
-//                // 自定义登陆用户名和密码属性名，默认为 username和password
-//                .usernameParameter("username").passwordParameter("password")
-//                // 异常处理
-//                .failureUrl("/login/error").permitAll()
-//                // 退出登录
-//                .and().logout().permitAll();
-
         // 标识访问 `/home` 这个接口，需要具备`ADMIN`角色
         // 标识只能在 服务器本地ip[127.0.0.1或localhost] 访问 `/home` 这个接口，其他ip地址无法访问
         registry.antMatchers("/home").hasIpAddress("127.0.0.1");
@@ -120,6 +108,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         registry.antMatchers(HttpMethod.OPTIONS, "/**").denyAll();
         // 自动登录 - cookie储存方式
         registry.and().rememberMe();
+        //不需要权限
+        registry.antMatchers("/needLogin",
+                "/swagger*//**",
+                "/v2/api-docs",
+                "/webjars*//**").permitAll();
         // 其余所有请求都需要认证
 
         registry.anyRequest().authenticated();
