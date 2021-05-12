@@ -13,11 +13,22 @@ import com.example.myblog.entity.User;
  */
 public interface UserService extends IService<User> {
 
-    void setUserContext(String sessionId, User userContext);
 
-    User getUserContext(String sessionId) ;
+    void loginOut(String token);
 
-    void cleanCache(String sessionId);
+    void setUserContext(String token, User userContext);
+
+    User getUserContext(String token) ;
+
+    void cleanCache(String token);
+
+
+    void setUserToken(String token, String tokenStr);
+
+    User getUserToken(String token) ;
+
+    void cleanCacheUserToken(String token);
+
 
 
 }

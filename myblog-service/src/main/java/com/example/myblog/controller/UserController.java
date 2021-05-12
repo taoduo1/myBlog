@@ -37,4 +37,11 @@ public class UserController extends BaseController {
         return new ApiResult(userService.insert(user));
     }
 
+    @ApiOperation(value = "退出登录")
+    @PostMapping(value = "/loginOut")
+    public ApiResult loginOut(@RequestParam("token") String token) {
+        userService.loginOut(token);
+        return ApiResult.ok();
+    }
+
 }

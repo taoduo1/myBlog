@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 /**
  * @author : duo.tao
  * @description : spring security 核心配置类/
- * 
+ *
  * @date : 2021/5/5 12:29
  */
 @Configuration
@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * 用户密码校验过滤器
      */
     private final AdminAuthenticationProcessingFilter adminAuthenticationProcessingFilter;
+
 
     // 上面是登录认证相关  下面为url权限相关 - ========================================================================================
 

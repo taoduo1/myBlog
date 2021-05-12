@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -57,11 +59,11 @@ public class AdminAuthenticationProvider implements AuthenticationProvider {
                 // 加密算法和密钥
                 .signWith(SignatureAlgorithm.HS512, Constants.SALT)
                 .compact();
-
+        Map map = new HashMap();
         // 前后端分离情况下 处理逻辑...
         // 在此处写入前端返回
         User user = userDetailService.findById(userInfo.getCurrentUserInfo().getId());
-        userService.setUserContext(jwt,user);
+        userService.setUserContext(jwt, user);
         return new UsernamePasswordAuthenticationToken(userInfo, jwt, userInfo.getAuthorities());
     }
 

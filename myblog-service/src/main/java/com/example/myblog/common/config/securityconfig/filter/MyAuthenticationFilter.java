@@ -4,13 +4,14 @@ package com.example.myblog.common.config.securityconfig.filter;
 import com.example.myblog.common.config.Constants;
 import com.example.myblog.common.config.securityconfig.dto.SecurityUser;
 import com.example.myblog.common.config.securityconfig.user.UserDetailsServiceImpl;
+import com.example.myblog.common.exception.MyException;
+import com.example.myblog.common.utils.DateUtil;
 import com.example.myblog.common.utils.MultiReadHttpServletRequest;
 import com.example.myblog.common.utils.MultiReadHttpServletResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -61,20 +62,20 @@ public class MyAuthenticationFilter extends OncePerRequestFilter {
                 // 获取jwt中的信息
                 Claims claims = Jwts.parser().setSigningKey(Constants.SALT).parseClaimsJws(jwtToken.replace("Bearer", "")).getBody();
                 // 获取当前登录用户名
-                System.out.println("获取当前登录用户名: " + claims.getSubject());
-                // TODO 如需使用jwt特性在此做处理~
+                System.out.println("获取当前登录用户名: " + DateUtil.format(claims.getExpiration(),DateUtil.YYYY_MM_DD_HH_MM_SS));
+                // TODO 如需使用jwt特性在此做处理~ 增加续期作用  续期就是删除原来的并重新申请新的，这里拿的到时间，在时间还有10分钟时进操作
                 // JWT相关end ===========================================
 
                 SecurityUser securityUser = userDetailsService.getUserByToken(jwtToken);
                 if (securityUser == null || securityUser.getCurrentUserInfo() == null) {
-                    throw new AccessDeniedException("TOKEN已过期，请重新登录！");
+                    throw new MyException("TOKEN已过期，请重新登录！");
                 }
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(securityUser, null, securityUser.getAuthorities());
                 // 全局注入角色权限信息和登录用户基本信息
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
             filterChain.doFilter(wrappedRequest, wrappedResponse);
-        } finally {
+        }finally {
             stopWatch.stop();
             long usedTimes = stopWatch.getTotalTimeMillis();
             // 记录响应的消息体
